@@ -1,0 +1,167 @@
+﻿<Window x:Class="ProjectOffline.Root"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Root" Height="505" Width="700"
+        ResizeMode="NoResize"
+        KeyDown="KeyPressed" Icon="Toma4025-Rumax-Filetype-dat.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="306*"/>
+            <ColumnDefinition Width="41*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="directoryListBox" HorizontalAlignment="Left" Height="227" Margin="42,127,0,0" VerticalAlignment="Top" Width="403"/>
+        <ListBox x:Name="ListBox" HorizontalAlignment="Left" Height="377" Margin="42,51,0,0" VerticalAlignment="Top" Width="183" BorderThickness="0"/>
+        <ListBox x:Name="serviceBox" HorizontalAlignment="Left" Height="377" Margin="42,51,0,0" VerticalAlignment="Top" Width="611" BorderThickness="0" Grid.ColumnSpan="2"/>
+        <Image x:Name="screenShotImg" HorizontalAlignment="Left" Height="377" Margin="34,44,0,0" VerticalAlignment="Top" Width="619" RenderTransformOrigin="-0.125,0.124" Grid.ColumnSpan="2"/>
+        <Menu Margin="0,0,0,431" Grid.ColumnSpan="2">
+            <MenuItem x:Name="connectionMI" Header="Connections" Height="28" Margin="0" Width="91">
+                <MenuItem x:Name="openConMI" Header="Open Connection" Click="loadConnectionScreen_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="closeConMI" Header="Close Connection" Click="disconBTN_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="detailMI" Header="Display Details" Height="28" Margin="0" Width="104">
+                <MenuItem x:Name="pcSpecsMI" Header="PC specs" Click="systemSpecBTN_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="driversMI" Header="Drives" Click="DisplayDriversBTN_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="directoriesMI" Header="Directories" Click="loadDisplayDirectoriesScreen_Click"  Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="processesMI" Header="Processes" Click="processesBTN_Click"  Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="ServicesMI" Header="Services" Click="ServicesBTN_Click"  Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+            </MenuItem>
+
+
+
+            <MenuItem x:Name="captureMI" Header="Screen Capture" Height="28" Margin="0" Width="105">
+                <MenuItem x:Name="screenshotMI" Header="Screenshot" Click="screenshotBTN_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="streamMI" Header="Stream" Click="loadStreamScreen_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="commandsMI" Header="Commands" Height="28" Margin="0" Width="87">
+                <MenuItem x:Name="sendFileMI" Header="Send File" Click="loadSendFileScreen_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="startProcessMI" Header="Start process" Click="loadStartProcessScreen_Click"  Margin="0,0,-26,0" >
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+                <MenuItem x:Name="endProcessMI" Header="End process" Click="loadEndProcessScreen_Click"  Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="settingsMI" Header="Settings" Height="28" Margin="0" Width="67">
+                <MenuItem x:Name="saveDestinMI" Header="Save Destination" Click="loadSettingsScreen_Click" Margin="0,0,-26,0">
+                    <MenuItem.ContextMenu>
+                        <ContextMenu/>
+                    </MenuItem.ContextMenu>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="ChatMI" Header="Chat" Height="28" Click="startChat_Click" Margin="0" Width="84"/>
+        </Menu>
+        <Grid x:Name="pcspecsGrid" Margin="0,44,167,47">
+            <Label x:Name="osLBL" Content="" HorizontalAlignment="Left" Margin="26,30,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="osArchitectureLBL" Content="" HorizontalAlignment="Left" Margin="26,60,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="ramLBL" Content="" HorizontalAlignment="Left" Margin="26,120,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="usernameLBL" Content="" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="cpuLBL" Content="" HorizontalAlignment="Left" Margin="26,90,0,0" VerticalAlignment="Top"/>
+        </Grid>
+
+        <Button x:Name="logout" Content="Logout" HorizontalAlignment="Left" Margin="592,0,0,20" Width="75" Height="20" VerticalAlignment="Bottom" Click="logout_Click" Grid.ColumnSpan="2"/>
+        <Grid x:Name="connectionGrid" Margin="27,45,233,316">
+            <TextBox x:Name="ipTXT" HorizontalAlignment="Left" Height="23" Margin="68,0,0,0" TextWrapping="Wrap" Text="xxx.xxx.xx.xx" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="portTXT" HorizontalAlignment="Left" Height="23" Margin="69,31,0,0" TextWrapping="Wrap" Text="8080" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="ipLBL" Content="IP address:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="portLBL" Content="Port:" HorizontalAlignment="Left" Margin="2,31,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="conBTN" Content="Connect" HorizontalAlignment="Left" Margin="214,3,0,0" VerticalAlignment="Top" Width="86" Click="conBTN_Click"/>
+        </Grid>
+        <Label x:Name="conLBL" Content="" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top"/>
+        <Grid x:Name="settingsGrid" Margin="42,45,142,319">
+            <TextBox x:Name="saveLocationTXT" HorizontalAlignment="Left" Height="23" Margin="143,3,0,0" TextWrapping="Wrap" Text="D:\\" VerticalAlignment="Top" Width="152"/>
+            <Label x:Name="saveLocationLBL" Content="Screenshot save location:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="confirmBTN" Content="Confirm" HorizontalAlignment="Left" Margin="300,30,0,0" VerticalAlignment="Top" Width="101" Click="confirmBTN_Click"/>
+            <Label x:Name="successfulSaveLocationLbl" Content="" HorizontalAlignment="Left" Margin="3,34,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="selectDirectoryBTN" Content="Select Directory" HorizontalAlignment="Left" Margin="300,5,0,0" VerticalAlignment="Top" Width="101" Click="selectDirectoryBTN_Click"/>
+        </Grid>
+        <Button x:Name="startStreamBTN" Content="Start Stream" HorizontalAlignment="Left" Margin="42,423,0,0" VerticalAlignment="Top" Width="75" Click="startStreamBTN_Click"/>
+        <Button x:Name="endStreamBTN" Content="End Stream" HorizontalAlignment="Left" Margin="139,423,0,0" VerticalAlignment="Top" Width="75" Click="endStreamBTN_Click"/>
+        <Grid x:Name="processDetailsGrid" Margin="230,85,10,117" Grid.ColumnSpan="2">
+            <Label x:Name="processNameLbl" Content="" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Label x:Name="windowTitleLbl" Content="" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="idLbl" Content="" HorizontalAlignment="Left" Margin="0,57,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="appStartTimeLbl" Content="" HorizontalAlignment="Left" Margin="0,88,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="userProcTimeLbl" Content="" HorizontalAlignment="Left" Margin="0,119,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="priorityLbl" Content="" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="respondingLbl" Content="" HorizontalAlignment="Left" Margin="0,181,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="virtualMemoryLbl" Content="" HorizontalAlignment="Left" Margin="0,212,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="driveGrid" HorizontalAlignment="Left" Height="419" Margin="1,44,0,0" VerticalAlignment="Top" Width="693" Grid.ColumnSpan="2"/>
+        <Grid x:Name="directoryGrid" Margin="0,46,0,319">
+            <Label x:Name="directoryLbl" Content="Directory Label: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBox x:Name="directoryTXT" HorizontalAlignment="Left" Height="23" Margin="96,3,0,0" TextWrapping="Wrap" Text="C:\" VerticalAlignment="Top" Width="240"/>
+            <Button x:Name="directoriesBTN" Content="Display Directory" Click="DisplayDirectoriesBTN_Click" HorizontalAlignment="Left" Margin="341,3,0,0" VerticalAlignment="Top" Width="100"/>
+            <Button x:Name="directoryBackBTN" Content="Back" HorizontalAlignment="Left" Margin="341,28,0,0" VerticalAlignment="Top" Width="100" Click="directoryBackBTN_Click"/>
+            <Label x:Name="retrieveFileLBL" Content="" HorizontalAlignment="Left" Margin="2,31,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid x:Name="sendFileGrid" Margin="16,45,10,306">
+            <Label x:Name="fileLbl" Content="File: " HorizontalAlignment="Left" Margin="55,0,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="sendFileBTN" Content="Send File" HorizontalAlignment="Left" Margin="242,63,0,0" VerticalAlignment="Top" Width="75" Click="sendFileBTN_Click"/>
+            <TextBox x:Name="sendFileTXT" HorizontalAlignment="Left" Height="23" Margin="94,3,0,0" TextWrapping="Wrap" Text="C:\\Filename" VerticalAlignment="Top" Width="223"/>
+            <Label x:Name="saveLocationLbl" Content="Save Location: " HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="sendFileLocationTXT" HorizontalAlignment="Left" Height="23" Margin="95,35,0,0" TextWrapping="Wrap" Text="C:\\Filename" VerticalAlignment="Top" Width="222"/>
+            <Label x:Name="successLbl" Content="" HorizontalAlignment="Left" Margin="94,81,0,0" VerticalAlignment="Top"/>
+            <Button x:Name="findFileBTN" Content="Find File" HorizontalAlignment="Left" Margin="162,63,0,0" VerticalAlignment="Top" Width="75" Click="findFileBTN_Click"/>
+        </Grid>
+        <Grid x:Name="startProcessGrid" Margin="1,45,98,289">
+            <Label x:Name="startProcessNameLbl" Content="Process Name:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="startProcessBTN" Content="Start Process" HorizontalAlignment="Left" Margin="163,40,0,0" VerticalAlignment="Top" Width="81" Height="21" Click="startProcessBTN_Click"/>
+            <TextBox x:Name="startProcessNameTXT" HorizontalAlignment="Left" Height="23" Margin="93,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Text=".exe/Process"/>
+            <Label x:Name="startProcessSuccLbl" Content="" HorizontalAlignment="Left" Margin="93,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.2,2"/>
+        </Grid>
+        <Grid x:Name="endProcessGrid" Margin="1,45,98,280">
+            <Label x:Name="endProcessNameLbl" Content="Process Id:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,0,0,0"/>
+            <TextBox x:Name="endProcessNameTXT" HorizontalAlignment="Left" Height="23" Margin="93,3,0,0" TextWrapping="Wrap" Text="ProcessId" VerticalAlignment="Top" Width="151"/>
+            <Button x:Name="endProcessBTN" Content="End Process" HorizontalAlignment="Left" Margin="163,40,0,0" VerticalAlignment="Top" Width="81" Click="endProcessBTN_Click"/>
+            <Label x:Name="endProcessSuccLbl" Content="" HorizontalAlignment="Left" Margin="93,63,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Button x:Name="moveMouseBTN" Content="Control Mouse" HorizontalAlignment="Left" Margin="230,423,0,0" VerticalAlignment="Top" Width="95" Click="moveMouseBTN_Click"/>
+        <Button x:Name="endMouseBTN" Content="End Control" HorizontalAlignment="Left" Margin="347,423,0,0" VerticalAlignment="Top" Width="98" Click="endMouseBTN_Click"/>
+    </Grid>
+</Window>
+
